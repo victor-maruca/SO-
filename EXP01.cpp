@@ -153,7 +153,9 @@ void* BAT_Manager(void* args) {
 }
 
 int main() {
-    pthread_create(nullptr, NULL, BAT_Manager, NULL);
+    pthread_t managerThread;
+    pthread_create(&managerThread, NULL, BAT_Manager, NULL);
+
     while(true) {
         char input[100];
         cin >> input;
@@ -168,7 +170,8 @@ int main() {
                 bat.uuid = getNextId();
                 bat.id = i;
                 bat.queue = input[i];
-                pthread_create(nullptr, NULL, BAT_Processor, (void *)&bat);
+                pthread_t newBatThread;
+                pthread_create(&newBatThread, NULL, BAT_Processor, (void *)&bat);
             }
         }
     }
