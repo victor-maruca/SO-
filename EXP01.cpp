@@ -5,6 +5,7 @@
 #include <list> 
 #include <queue>
 #include <unistd.h>
+#include <sstream>
 
 using namespace std;
 
@@ -23,6 +24,10 @@ static queue <BAT> NORTH_QUEUE;
 static queue <BAT> EAST_QUEUE;
 static queue <BAT> SOUTH_QUEUE;
 static queue <BAT> WEST_QUEUE;
+
+static void printMsg(string msg) {
+    cout << msg << endl;
+}
 
 static char getNextQueue() {
     static char lastVisited = NULL;
@@ -68,10 +73,10 @@ void* BAT_Processor(void *_bat) {
             WEST_QUEUE.push(*bat);
             break;
     }  
-    cout << "BAT " << bat->id << " " << (bat->queue + 32) << " chegou no cruzamento." << endl;
-    while(authorizedBAT != bat->uuid) {
-        usleep(1000000);
-    }
+    stringstream msg;
+    msg << "BAT " << bat->id << " " << (bat->queue) << " chegou no cruzamento.";
+    printMsg(msg.str());
+    while(authorizedBAT != bat->uuid) { }
     switch(bat->queue) {
         case 'n':
             NORTH_QUEUE.pop();
@@ -86,7 +91,9 @@ void* BAT_Processor(void *_bat) {
             WEST_QUEUE.pop();
             break;
     }  
-    cout << "BAT " << bat->id << " " << (bat->queue + 32) << " saiu no cruzamento" << endl;
+    stringstream msg2;
+    msg2 << "BAT " << bat->id << " " << (bat->queue) << " saiu no cruzamento";
+    printMsg(msg2.str());
     authorizedBAT = -1;
 }
 
@@ -112,40 +119,96 @@ void* BAT_Manager(void* args) {
         }  
 
         if(currentQueue.size() > 0) {
-            if(currentQueue.size() > k && !currentQueue.front().hasJumped) {
+            if(currentQueue.size() > k && currentQueue.front().hasJumped == false) {
                 switch(currentQueueChar) {
                     case 'n':
                         if(EAST_QUEUE.size() > 0) {
-                            cout << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue + 32) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E" << endl;
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
                             break;
-                        }
+                        } else if(SOUTH_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(WEST_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } 
                     case 'e':
                         if(SOUTH_QUEUE.size() > 0) {
-                            cout << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue + 32) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S" << endl;
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if (WEST_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(NORTH_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
                             break;
                         }
                     case 's':
                         if(WEST_QUEUE.size() > 0) {
-                            cout << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue + 32) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W" << endl;
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(NORTH_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(EAST_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
                             break;
                         }
                     case 'w':
                         if(NORTH_QUEUE.size() > 0) {
-                            cout << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue + 32) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N" << endl;
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(EAST_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
+                            break;
+                        } else if(SOUTH_QUEUE.size() > 0) {
+                            stringstream msg;
+                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            printMsg(msg.str());
+                            currentQueue.front().hasJumped = true;
                             break;
                         }
                     default:
                         authorizedBAT = currentQueue.front().uuid;
-                        while(authorizedBAT != -1) {
-                            usleep(500000);
-                        }
+                        while(authorizedBAT != -1) { }
                         break;
                 }
             } else {
                 authorizedBAT = currentQueue.front().uuid;
-                while(authorizedBAT != -1) {
-                    usleep(500000);
-                }
+                while(authorizedBAT != -1) {}
             } 
         }
     }
@@ -155,6 +218,10 @@ void* BAT_Manager(void* args) {
 int main() {
     pthread_t managerThread;
     pthread_create(&managerThread, NULL, BAT_Manager, NULL);
+
+    pthread_t batThreads [100];
+    BAT createdBats [100];
+    int currentThreadIndex = 0;
 
     while(true) {
         char input[100];
@@ -166,12 +233,12 @@ int main() {
             k = (int) input[2];
         } else {
             for (int i = 0; input[i] != '\0'; i++){
-                BAT bat = {};
-                bat.uuid = getNextId();
-                bat.id = i;
-                bat.queue = input[i];
-                pthread_t newBatThread;
-                pthread_create(&newBatThread, NULL, BAT_Processor, (void *)&bat);
+                createdBats[currentThreadIndex] = BAT {};
+                createdBats[currentThreadIndex].uuid = getNextId();
+                createdBats[currentThreadIndex].id = i;
+                createdBats[currentThreadIndex].queue = input[i];
+                pthread_create(&batThreads[currentThreadIndex], NULL, BAT_Processor, (void *)&createdBats[currentThreadIndex]);
+                currentThreadIndex++;
             }
         }
     }
