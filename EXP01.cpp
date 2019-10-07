@@ -124,19 +124,19 @@ void* BAT_Manager(void* args) {
                     case 'n':
                         if(EAST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            msg << "BAT " << currentQueue.front().id << " n cedeu passagem BAT " << EAST_QUEUE.front().id << " e";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(SOUTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            msg << "BAT " << currentQueue.front().id << " n cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(WEST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            msg << "BAT " << currentQueue.front().id << " n cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
@@ -144,19 +144,19 @@ void* BAT_Manager(void* args) {
                     case 'e':
                         if(SOUTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            msg << "BAT " << currentQueue.front().id << " e cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if (WEST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            msg << "BAT " << currentQueue.front().id << " e cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(NORTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            msg << "BAT " << currentQueue.front().id << " e cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
@@ -164,19 +164,19 @@ void* BAT_Manager(void* args) {
                     case 's':
                         if(WEST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
+                            msg << "BAT " << currentQueue.front().id << " s cedeu passagem BAT " << WEST_QUEUE.front().id << " W";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(NORTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            msg << "BAT " << currentQueue.front().id << " s cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(EAST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            msg << "BAT " << currentQueue.front().id << " s cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
@@ -184,19 +184,19 @@ void* BAT_Manager(void* args) {
                     case 'w':
                         if(NORTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
+                            msg << "BAT " << currentQueue.front().id << " w cedeu passagem BAT " << NORTH_QUEUE.front().id << " N";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(EAST_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
+                            msg << "BAT " << currentQueue.front().id << " w cedeu passagem BAT " << EAST_QUEUE.front().id << " E";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
                         } else if(SOUTH_QUEUE.size() > 0) {
                             stringstream msg;
-                            msg << "BAT " << currentQueue.front().id << " " << (currentQueue.front().queue) << " cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
+                            msg << "BAT " << currentQueue.front().id << " w cedeu passagem BAT " << SOUTH_QUEUE.front().id << " S";
                             printMsg(msg.str());
                             currentQueue.front().hasJumped = true;
                             break;
